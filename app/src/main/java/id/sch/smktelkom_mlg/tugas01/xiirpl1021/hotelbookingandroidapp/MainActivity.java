@@ -108,9 +108,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
                 doClick();
                 final String email = etEmail.getText().toString();
-                if (!isValidEmail(email)) {
-                    etEmail.setError("Invalid Email");
-                }
 
                 doOpen();
 
@@ -205,45 +202,71 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     private void doClick() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Name : ");
-        builder.append(etNama.getText().toString());
-        builder.append("\n");
-        builder.append("\n");
 
-        builder.append("Email : ");
-        builder.append(etEmail.getText().toString());
-        builder.append("\n");
-        builder.append("\n");
+        if (isValid()) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Name : ");
+            builder.append(etNama.getText().toString());
+            builder.append("\n");
+            builder.append("\n");
 
-        builder.append("Wilayah Provinsi ");
-        builder.append(spProvinsi.getSelectedItem().toString());
-        builder.append(" Kota ");
-        builder.append(spKota.getSelectedItem().toString());
-        builder.append("\n");
-        builder.append("\n");
+            builder.append("Email : ");
+            builder.append(etEmail.getText().toString());
+            builder.append("\n");
+            builder.append("\n");
 
-        builder.append("Departure : ");
-        builder.append(etDeparture.getText().toString());
-        builder.append("\n");
-        builder.append("\n");
+            builder.append("Wilayah Provinsi ");
+            builder.append(spProvinsi.getSelectedItem().toString());
+            builder.append(" Kota ");
+            builder.append(spKota.getSelectedItem().toString());
+            builder.append("\n");
+            builder.append("\n");
 
-        builder.append("Arrival : ");
-        builder.append(etArrival.getText().toString());
-        builder.append("\n");
-        builder.append("\n");
+            builder.append("Departure : ");
+            builder.append(etDeparture.getText().toString());
+            builder.append("\n");
+            builder.append("\n");
 
-        builder.append("Facilities : ");
-        int startlen = builder.length();
-        if (cbBC.isChecked()) builder.append(cbBC.getText()).append("\n");
-        if (cbOR.isChecked()) builder.append(cbOR.getText()).append("\n");
-        if (cbGB.isChecked()) builder.append(cbGB.getText()).append("\n");
+            builder.append("Arrival : ");
+            builder.append(etArrival.getText().toString());
+            builder.append("\n");
+            builder.append("\n");
 
-        if (builder.length() == startlen) builder.append("Tidak ada pada pilihan");
+            builder.append("Facilities : ");
+            int startlen = builder.length();
+            if (cbBC.isChecked()) builder.append(cbBC.getText()).append("\n");
+            if (cbOR.isChecked()) builder.append(cbOR.getText()).append("\n");
+            if (cbGB.isChecked()) builder.append(cbGB.getText()).append("\n");
+
+            if (builder.length() == startlen) builder.append("Tidak ada pada pilihan");
 
 
-        tvHasil.setText(builder);
+            tvHasil.setText(builder);
+        }
+    }
 
+    private boolean isValid() {
+        boolean valid = true;
+
+        String nama = etNama.getText().toString();
+        String email = etEmail.getText().toString();
+
+
+        if (nama.isEmpty()) {
+            etNama.setError("Nama Belum Diisi");
+            valid = false;
+        } else if (nama.length() < 3) {
+            etNama.setError("Nama Minimal 3 Karakter");
+            valid = false;
+        } else {
+            etNama.setError(null);
+        }
+        if (!isValidEmail(email)) {
+            etEmail.setError("Invalid Email");
+        } else {
+            etEmail.setError(null);
+        }
+        return valid;
     }
 
     @Override
