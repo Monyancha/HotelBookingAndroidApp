@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,7 +22,7 @@ import java.util.regex.Pattern;
 
 import id.sch.smktelkom_mlg.tugas01.xiirpl1021.hotelbookingandroidapp.adapter.KotaAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     EditText etNama;
     EditText etEmail;
@@ -27,13 +30,18 @@ public class MainActivity extends AppCompatActivity {
     EditText etArrival;
     RadioGroup rgStatus;
 
+    int nHobi;
 
+    CheckBox cbBC, cbOR, cbGB, cbNL, cbNF;
+
+    TextView tvHobi;
     EditText date;
     EditText Arrival;
     DatePickerDialog datePickerDialog;
 
     Spinner spProvinsi, spKota;
-    TextView tvHasil;
+    TextView tvHasil, tvHasil2;
+
     String[][] arKota = {{"Jakarta Barat", "Jakarta Pusat", "Jakarta Selatan",
             "Jakarta Timur", "Jakarta Utara"},
             {"Bandung", "Cirebon", "Bekasi"}, {"Semarang",
@@ -47,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("Seach Ticket In Travesia");
+        setTitle("Seach Ticket To Malang");
 
         etNama = (EditText) findViewById(R.id.editTextNama);
         etEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -57,12 +65,24 @@ public class MainActivity extends AppCompatActivity {
         spProvinsi = (Spinner) findViewById(R.id.spinnerProvinsi);
         spKota = (Spinner) findViewById(R.id.spinnerKota);
         tvHasil = (TextView) findViewById(R.id.textViewHasil);
+        tvHasil2 = (TextView) findViewById(R.id.textViewHasil2);
 
         rgStatus = (RadioGroup) findViewById(R.id.radioGroupStatus);
+
+        cbBC = (CheckBox) findViewById(R.id.checkBox1);
+        cbOR = (CheckBox) findViewById(R.id.checkBox2);
+        cbGB = (CheckBox) findViewById(R.id.checkBox3);
 
         adapter = new KotaAdapter(this, listKota);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spKota.setAdapter(adapter);
+
+        tvHobi = (TextView) findViewById(R.id.textViewFasilitas);
+
+        cbBC.setOnCheckedChangeListener(this);
+        cbOR.setOnCheckedChangeListener(this);
+        cbGB.setOnCheckedChangeListener(this);
+
 
 
         spProvinsi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -81,17 +101,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        rgStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.radioButtonBM) {
-                    findViewById(R.id.tilJA).setVisibility(View.GONE);
-                } else {
-                    findViewById(R.id.tilJA).setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
 
         findViewById(R.id.buttonOK).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
                 if (!isValidEmail(email)) {
                     etEmail.setError("Invalid Email");
                 }
+
+                doOpen();
+
             }
 
         });
@@ -166,6 +178,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void doOpen() {
+        String hasil1 = null;
+
+        if (rgStatus.getCheckedRadioButtonId() != -1) {
+            RadioButton rb = (RadioButton)
+                    findViewById(rgStatus.getCheckedRadioButtonId());
+            hasil1 = rb.getText().toString();
+        }
+
+        if (hasil1 == null) {
+            tvHasil2.setText("Belum Memilih Kelas");
+        } else {
+            tvHasil2.setText("Class : " + hasil1);
+        }
+    }
+
     // validating email id
     private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -181,9 +209,11 @@ public class MainActivity extends AppCompatActivity {
         builder.append("Name : ");
         builder.append(etNama.getText().toString());
         builder.append("\n");
+        builder.append("\n");
 
         builder.append("Email : ");
         builder.append(etEmail.getText().toString());
+        builder.append("\n");
         builder.append("\n");
 
         builder.append("Wilayah Provinsi ");
@@ -191,19 +221,36 @@ public class MainActivity extends AppCompatActivity {
         builder.append(" Kota ");
         builder.append(spKota.getSelectedItem().toString());
         builder.append("\n");
+        builder.append("\n");
 
         builder.append("Departure : ");
         builder.append(etDeparture.getText().toString());
+        builder.append("\n");
         builder.append("\n");
 
         builder.append("Arrival : ");
         builder.append(etArrival.getText().toString());
         builder.append("\n");
+        builder.append("\n");
 
-        builder.append("\n\n\n");
+        builder.append("Facilities : ");
+        int startlen = builder.length();
+        if (cbBC.isChecked()) builder.append(cbBC.getText()).append("\n");
+        if (cbOR.isChecked()) builder.append(cbOR.getText()).append("\n");
+        if (cbGB.isChecked()) builder.append(cbGB.getText()).append("\n");
+
+        if (builder.length() == startlen) builder.append("Tidak ada pada pilihan");
+
 
         tvHasil.setText(builder);
 
+    }
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) nHobi += 1;
+        else nHobi -= 1;
+
+        tvHobi.setText("Facilities (" + nHobi + " Selected)");
     }
 }

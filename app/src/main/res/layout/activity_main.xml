@@ -160,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Full Name"
+            android:text="Class"
             android:textColor="@color/abc_primary_text_disable_only_material_light"
             android:textSize="16sp" />
 
@@ -175,54 +175,54 @@
                 android:id="@+id/radioButtonBM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New RadioButton" />
+                android:text="Economy" />
 
             <RadioButton
                 android:id="@+id/radioButtonM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New RadioButton" />
+                android:text="Business" />
 
             <RadioButton
                 android:id="@+id/radioButtonD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New RadioButton" />
+                android:text="First Class" />
 
             <RadioButton
                 android:id="@+id/radioButtonJ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New RadioButton" />
+                android:text="Executive" />
         </RadioGroup>
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewFasilitas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Full Name"
+            android:text="Facilities"
             android:textColor="@color/abc_primary_text_disable_only_material_light"
             android:textSize="16sp" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox" />
+            android:text="Wifi" />
 
         <CheckBox
             android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox" />
+            android:text="Spa" />
 
         <CheckBox
             android:id="@+id/checkBox3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="New CheckBox" />
+            android:text="Mosque" />
 
         <Button
             android:id="@+id/buttonOK"
@@ -238,6 +238,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Hasil" />
+
+        <TextView
+            android:id="@+id/textViewHasil2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>
