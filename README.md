@@ -1,11 +1,31 @@
-# HotelBookingAndroidApp
+# Hotel Booking Android App
 
 Tema aplikasi ini adalah Ticket Booking Ke Kota Malang. Terdapat beberapa form isian yang terdapat pada aplikasi ini, diantaranya adalah Nama, Email, Wilayah Asal, Departure, Arrival, Class, dan Facilities. Fungsi dari aplikasi ini untuk mencetak inputan berupa inputan tentang booking ticket untuk menuju ke kota malang. 
 
+- Penggunaan Date Time Picker pada aplikasi Hotel Booking ini
+
+
 ![date picker](https://cloud.githubusercontent.com/assets/22093845/18379608/a3209f14-769d-11e6-88a3-e31e03346b69.JPG)
+
+- Hasil dari inputan yang telah diisikan
+
+
 ![hasil](https://cloud.githubusercontent.com/assets/22093845/18379611/a34f69e8-769d-11e6-88bc-a5868e85e2dd.JPG)
+
+
+
+- Validasi Email
+
+
 ![validasi 1](https://cloud.githubusercontent.com/assets/22093845/18379609/a325af68-769d-11e6-94f9-8ccf557466f4.JPG)
+
+
+
+- Validasi Empty
+
+
 ![validasi 2](https://cloud.githubusercontent.com/assets/22093845/18379610/a327ca14-769d-11e6-9e20-e0e2bd1f92d9.JPG)
+
 
 Link APK : https://drive.google.com/open?id=0B_xOTZbrvh5kYkIxeHNPRWQzSmM
 
