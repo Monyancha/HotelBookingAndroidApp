@@ -9,8 +9,8 @@ Tema aplikasi ini adalah Ticket Booking Ke Kota Malang. Terdapat beberapa form i
 
 Link APK : https://drive.google.com/open?id=0B_xOTZbrvh5kYkIxeHNPRWQzSmM
 
-Nama : Hilmi Aziz Bukhori
-Kelas : XII RPL 1
-Urut : 21
-NIS : 4356/1254.063
-Nama Sekolah : SMK Telkom Malang
+- Nama : Hilmi Aziz Bukhori
+- Kelas : XII RPL 1
+- Urut : 21
+- NIS : 4356/1254.063
+- Nama Sekolah : SMK Telkom Malang
